@@ -1,0 +1,6 @@
+admin;Add functionality to task manager;Add additional options and refactor the code.;2022-12-01;2022-11-22;No
+Carlos;Work;Finish task 17;2024-12-21;2024-02-17;Yes
+Celia;Hospital;You have a shift at the hospital;2024-12-21;2024-02-17;No
+Celia;Clean House;Clean kitchen and bedroom;2024-12-04;2024-02-17;Yes
+Bia;Homework;Do the math problems;2024-05-12;2024-02-17;No
+Carlos;Cooking;Cook the pasta and make the sauce;2024-04-03;2024-02-19;Yes

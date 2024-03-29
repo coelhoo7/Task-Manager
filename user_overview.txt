@@ -1,0 +1,30 @@
+Total number of users: 4
+Total number of tasks: 6
+
+User: admin
+Total tasks assigned: 1
+Percentage of total tasks assigned: 16.67%
+Tasks completed: 0 (0.00%)
+Tasks still to complete: 1 (100.00%)
+Tasks overdue: 1 (100.00%)
+
+User: Carlos
+Total tasks assigned: 2
+Percentage of total tasks assigned: 33.33%
+Tasks completed: 2 (100.00%)
+Tasks still to complete: 0 (0.00%)
+Tasks overdue: 0 (0.00%)
+
+User: Celia
+Total tasks assigned: 2
+Percentage of total tasks assigned: 33.33%
+Tasks completed: 1 (50.00%)
+Tasks still to complete: 1 (50.00%)
+Tasks overdue: 0 (0.00%)
+
+User: Bia
+Total tasks assigned: 1
+Percentage of total tasks assigned: 16.67%
+Tasks completed: 0 (0.00%)
+Tasks still to complete: 1 (100.00%)
+Tasks overdue: 0 (0.00%)
