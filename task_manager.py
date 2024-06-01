@@ -14,6 +14,7 @@ from datetime import date, datetime
 
 DATETIME_STRING_FORMAT = "%Y-%m-%d"
 
+
 # Function to read tasks from file and convert to list of dictionaries
 def read_tasks():
     if not os.path.exists("tasks.txt"):
@@ -36,6 +37,7 @@ def read_tasks():
         task_list.append(task)
     return task_list
 
+
 # Function to read usernames and passwords from file
 def read_user_credentials():
     if not os.path.exists("user.txt"):
@@ -45,11 +47,13 @@ def read_user_credentials():
     with open("user.txt", 'r') as file:
         return dict(line.strip().split(';') for line in file if line.strip())
 
+
 # Function to write updated username-password pairs to file
 def write_user_credentials(username_password):
     with open("user.txt", "w") as file:
         for username, password in username_password.items():
             file.write(f"{username};{password}\n")
+
 
 # Login function
 def login(username_password):
@@ -67,6 +71,7 @@ def login(username_password):
             logged_in = True
     return curr_user
 
+
 # Function to update tasks.txt file with the current state of task_list
 def write_tasks(task_list):
     with open("tasks.txt", "w") as file:
@@ -78,6 +83,7 @@ def write_tasks(task_list):
             file.write(task_line + "\n")
 
 
+# Function to view and modify tasks
 def view_and_modify_tasks(curr_user):
     # Filter tasks for the current user
     user_tasks = [task for task in task_list if task['username'] == curr_user]
@@ -123,6 +129,7 @@ def view_and_modify_tasks(curr_user):
     write_tasks(task_list)
 
 
+# Function to generate task overview report
 def generate_task_overview(task_list):
     # Calculate the total number of tasks in the task list
     total_tasks = len(task_list)
@@ -152,7 +159,7 @@ def generate_task_overview(task_list):
         file.write(f"Percentage of tasks that are overdue: {percent_overdue:.2f}%\n")
 
 
-    
+# Function to generate user overview report   
 def generate_user_overview(task_list, username_password):
     # Calculate the total number of users and tasks
     total_users = len(username_password)
@@ -190,7 +197,7 @@ def generate_user_overview(task_list, username_password):
             file.write(f"Tasks overdue: {overdue} ({(overdue / total * 100) if total > 0 else 0:.2f}%)\n")
 
 
-
+# Function to display statistics
 def display_statistics(task_list, username_password):
     # Check if reports exist, generate if not
     if not os.path.exists("task_overview.txt") or not os.path.exists("user_overview.txt"):
@@ -208,6 +215,7 @@ def display_statistics(task_list, username_password):
     with open("user_overview.txt", "r") as file:
         print(file.read())
    
+
 
 # Main program
 task_list = read_tasks()  # Load tasks
@@ -227,8 +235,8 @@ ds - Display statistics
 e - Exit
 : ''').lower()
 
+    # Registering a new user (Admin only)
     if menu == 'r' and logged_in_user == 'admin':
-        # Registering a new user
         new_username = input("New Username: ")
         if new_username in username_password:
             print("Username already exists.")
@@ -243,7 +251,7 @@ e - Exit
         else:
             print("Passwords do not match.")
 
-
+    # Adding a new task
     elif menu == 'a':
         '''
         Allow a user to add a new task to task.txt file
@@ -300,7 +308,7 @@ e - Exit
             task_file.write("\n".join(task_list_to_write))
         print("Task successfully added.")
 
-
+    # Viewing all tasks
     elif menu == 'va':
         '''
         Allows users to see all the tasks in the program
@@ -314,14 +322,14 @@ e - Exit
             disp_str += f"Task Description: \n {t['description']}\n"
             print(disp_str)
             
-
+    # Viewing and modifying user's own tasks
     elif menu == 'vm':
         view_and_modify_tasks(logged_in_user)
 
-
+    # Generating reports (Admin only)
     elif menu == 'gr' and logged_in_user == 'admin':
         '''
-        If the user is an admin they can generate reports with detailed infor
+        If the user is an admin they can generate reports with detailed information
         about tasks and users
         '''
         generate_task_overview(task_list)
@@ -334,16 +342,17 @@ e - Exit
         with open("user_overview.txt", "r") as file:
             print(file.read())
 
-
+    # Displaying statistics (Admin only)
     elif menu == 'ds' and logged_in_user == 'admin': 
         '''If the user is an admin they can display statistics about number of users
             and tasks.'''
         display_statistics(task_list, username_password)  
 
-
+    # Exiting the program
     elif menu == 'e':
         print('Goodbye!!!')
         exit()
 
+    # Handling invalid input
     else:
         print("You have made a wrong choice, Please Try again")
